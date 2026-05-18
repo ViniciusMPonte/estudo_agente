@@ -10,5 +10,6 @@ class Buscador:
             embedding_function=self.embeddings,
         )
 
-    def buscar(self, pergunta: str, quantidade: int = 3) -> list:
-        return self.banco.similarity_search(pergunta, k=quantidade)
+    def buscar(self, pergunta: str, quantidade: int = 3, threshold: float = 0.5) -> list:
+        resultados = self.banco.similarity_search_with_relevance_scores(pergunta, k=quantidade)
+        return [doc for doc, score in resultados if score >= threshold]
