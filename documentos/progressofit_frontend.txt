@@ -1,0 +1,101 @@
+# FONTE: progressofit-frontend
+# IDIOMA: pt-BR
+# DESCRICAO: Documentacao do frontend da plataforma ProgressoFit
+
+---
+
+## SECAO: Frontend > Visao Geral
+TIPO: conceito
+PALAVRAS-CHAVE: overview, plataforma, treinos, gamificacao, IA, academico
+
+ProgressoFit Frontend e uma plataforma web para monitoramento de treinos. Permite visualizacao de progresso por graficos e relatorios, gamificacao por conquistas, e frases motivacionais personalizadas com IA. Desenvolvido como projeto academico por Vinicius Menezes Pontes, Matheus Aquino de Andrade, Juan Pablo Lima Rassi, Isabela Soares dos Santos, William Santos de Santana e Arthur Moura Silva.
+
+---
+
+## SECAO: Frontend > Arquitetura
+TIPO: conceito
+PALAVRAS-CHAVE: MVC, arquitetura, model, view, controller, service, router
+
+O projeto segue o padrao MVC. Models (DTOs) definem estruturas de dados e validacoes. Views cuidam da renderizacao de componentes e paginas. Controllers contem logica de negocio e manipulacao de eventos. Services gerenciam comunicacao com APIs. O Router controla navegacao e rotas.
+
+---
+
+## SECAO: Frontend > Integracao com Backend
+TIPO: conceito
+PALAVRAS-CHAVE: ApiService, JWT, autenticacao, HTTP, integracao, headers
+
+A comunicacao com o backend e feita pela classe ApiService, responsavel por: autenticacao via JWT, requisicoes HTTP padronizadas, tratamento de erros e insercao automatica de headers de autenticacao.
+
+---
+
+## SECAO: Frontend > Funcionalidades
+TIPO: conceito
+PALAVRAS-CHAVE: autenticacao, login, cadastro, JWT, componentes, Bootstrap, SCSS
+
+Funcionalidades ja implementadas: sistema de autenticacao com login e cadastro de usuarios, controle de autorizacao com tokens JWT, arquitetura baseada em componentes reutilizaveis e Bootstrap customizado com Sass/SCSS.
+
+---
+
+## SECAO: Frontend > Pre-requisitos
+TIPO: instrucao
+PALAVRAS-CHAVE: Node.js, NPM, Git, pre-requisitos, versao, instalacao
+
+Para executar o frontend do ProgressoFit e necessario ter instalado: Node.js versao 16 ou superior, NPM e Git. Verifique as versoes com os comandos: "node --version", "npm --version" e "git --version" no terminal.
+
+---
+
+## SECAO: Frontend > Como Executar
+TIPO: instrucao
+PALAVRAS-CHAVE: executar, clone, npm install, npm start, localhost, 8080, ApiService
+
+Passos para executar o frontend:
+1. Clone o repositorio: gh repo clone ViniciusMPonte/ProgressoFit-Frontend e entre no diretorio.
+2. Instale as dependencias: npm install.
+3. Configure a URL da API no arquivo src/service/ApiService.js, ajustando baseURL para http://localhost:8090 se necessario.
+4. Inicie o servidor: npm start — o Live Server abrira automaticamente.
+5. Acesse a aplicacao em: http://localhost:8080.
+
+---
+
+## SECAO: Frontend > Bootstrap > Pre-requisitos
+TIPO: instrucao
+PALAVRAS-CHAVE: Bootstrap, Sass, PostCSS, Autoprefixer, customizacao, SCSS
+
+Para customizar o Bootstrap instale globalmente via NPM: Sass com "npm install -g sass", PostCSS CLI com "npm install -g postcss-cli" e Autoprefixer com "npm install -g autoprefixer". Verifique as instalacoes com: "sass --version", "postcss --version" e "autoprefixer --info".
+
+---
+
+## SECAO: Frontend > Bootstrap > Estrutura de Arquivos
+TIPO: referencia
+PALAVRAS-CHAVE: estrutura, bootstrap.scss, bootstrap.css, cheatsheet, diretorio
+
+Os arquivos do Bootstrap customizado ficam em ./src/styles/bootstrap/ e incluem: bootstrap.scss (arquivo principal de customizacao), bootstrap.css (CSS compilado), bootstrap.css.map, package.json, package-lock.json e a pasta cheatsheet/ com documentacao visual dos componentes Bootstrap.
+
+---
+
+## SECAO: Frontend > Bootstrap > Customizacao de Variaveis SCSS
+TIPO: instrucao
+PALAVRAS-CHAVE: SCSS, variaveis, customizacao, cores, tipografia, breakpoints, bootstrap.scss
+
+Para customizar o Bootstrap, edite o arquivo bootstrap.scss definindo variaveis antes do @import. Principais variaveis: $primary e $secondary para cores, $font-family-base para tipografia, $spacer para espacamentos, $border-radius para bordas e $grid-breakpoints para breakpoints responsivos (xs:0, sm:576px, md:768px, lg:992px, xl:1200px, xxl:1400px). Por fim, importe com @import "~bootstrap/scss/bootstrap".
+
+---
+
+## SECAO: Frontend > Bootstrap > Compilacao do SCSS
+TIPO: codigo
+PALAVRAS-CHAVE: compilar, Sass, watch, SCSS, minificado, sourcemap, autoprefixer
+
+Para compilar o Bootstrap customizado, navegue ate src/styles/bootstrap/ e use os comandos:
+- Compilacao basica: sass bootstrap.scss bootstrap.css
+- Watch mode (recompila automaticamente a cada alteracao): sass --watch bootstrap.scss:bootstrap.css
+- Compilacao minificada: sass --style compressed bootstrap.scss bootstrap.css
+- Com sourcemap: sass --source-map bootstrap.scss bootstrap.css
+- Aplicar autoprefixer: postcss bootstrap.css --use autoprefixer -o bootstrap.css
+
+---
+
+## SECAO: Frontend > Bootstrap > Cheatsheet
+TIPO: referencia
+PALAVRAS-CHAVE: cheatsheet, componentes, Bootstrap, documentacao, referencia, visual
+
+A cheatsheet do Bootstrap fica disponivel em http://localhost:8080/src/styles/bootstrap/cheatsheet/ (arquivo: src/styles/bootstrap/cheatsheet/index.html). Contem exemplos visuais de todos os componentes, codigo HTML pronto para copiar, variacoes de cada componente, referencia de responsividade e breakpoints, classes utilitarias e componentes como Buttons, Cards, Modals, Navbars, Grid e Forms.

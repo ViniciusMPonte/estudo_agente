@@ -1,0 +1,39 @@
+# FONTE: progressofit-backend
+# IDIOMA: pt-BR
+# DESCRICAO: Documentacao do backend da plataforma ProgressoFit
+
+---
+
+## SECAO: Backend > Visao Geral
+TIPO: conceito
+PALAVRAS-CHAVE: backend, API, treinos, exercicios, relatorios, IA, motivacional
+
+O backend do ProgressoFit e uma API REST para monitoramento de treinos. Permite registro de exercicios, cargas, tempos e sensacoes, transformando esses dados em relatorios e graficos de evolucao. Integra-se com IA (como ChatGPT) para gerar mensagens motivacionais e recomendacoes de treino personalizadas. Desenvolvido por Vinicius Menezes Pontes, Matheus Aquino de Andrade, Isabela Soares dos Santos e Juan Pablo Lima Rassi.
+
+---
+
+## SECAO: Backend > Tecnologias
+TIPO: conceito
+PALAVRAS-CHAVE: Java, Spring Boot, PostgreSQL, Docker, Gradle, tecnologias, stack
+
+Stack do backend: Java 17 com Spring Boot, banco de dados PostgreSQL, containerizacao com Docker e Docker Compose, e build tool Gradle.
+
+---
+
+## SECAO: Backend > Pre-requisitos
+TIPO: instrucao
+PALAVRAS-CHAVE: Java 17, Docker, Docker Compose, Git, pre-requisitos, instalacao
+
+Para executar o backend do ProgressoFit e necessario ter instalado: Java 17 ou superior, Docker e Docker Compose e Git. Verifique as versoes com os comandos: "java -version", "docker --version" e "docker-compose --version".
+
+---
+
+## SECAO: Backend > Como Executar
+TIPO: instrucao
+PALAVRAS-CHAVE: executar, clone, docker-compose up, gradlew bootRun, localhost, 8090, PostgreSQL
+
+Passos para executar o backend:
+1. Clone o repositorio: gh repo clone ViniciusMPonte/ProgressoFit-Backend e entre no diretorio.
+2. Inicie os servicos com Docker: docker-compose up — esse comando configura as dependencias e inicializa o banco de dados PostgreSQL.
+3. Execute a aplicacao Spring Boot: ./gradlew bootRun.
+4. A aplicacao estara disponivel em: http://localhost:8090.
