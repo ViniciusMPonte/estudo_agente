@@ -3,7 +3,8 @@ from pathlib import Path
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_ollama import OllamaEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+
 
 class Indexador:
 
@@ -15,17 +16,35 @@ class Indexador:
     def carregar_documentos(self) -> list:
         loader = DirectoryLoader(
             str(self.pasta_documentos),
-            glob="*.txt",
+            glob="*.md",
             loader_cls=TextLoader,
+            loader_kwargs={"encoding": "utf-8"},
         )
         return loader.load()
 
     def dividir_chunks(self, documentos: list) -> list:
-        splitter = RecursiveCharacterTextSplitter(
-            chunk_size=800,
-            chunk_overlap=150,
+        header_splitter = MarkdownHeaderTextSplitter(
+            headers_to_split_on=[
+                ("#", "titulo"),
+                ("##", "secao"),
+                ("###", "subsecao"),
+            ],
+            strip_headers=False,
         )
-        return splitter.split_documents(documentos)
+
+        char_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1000,
+            chunk_overlap=100,
+        )
+
+        chunks = []
+        for doc in documentos:
+            secoes = header_splitter.split_text(doc.page_content)
+            for secao in secoes:
+                secao.metadata.update(doc.metadata)
+            chunks.extend(char_splitter.split_documents(secoes))
+
+        return chunks
 
     def indexar(self) -> None:
         documentos = self.carregar_documentos()
@@ -35,4 +54,3 @@ class Indexador:
             embedding=self.embeddings,
             persist_directory=self.pasta_banco,
         )
-
