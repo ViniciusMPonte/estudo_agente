@@ -1,26 +1,21 @@
-from langchain_chroma import Chroma
 from langchain_core.tools import tool
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
+from buscador import Buscador
 
 
 class Agente:
 
-    def __init__(self, pasta_banco: str) -> None:
-        self.llm = ChatOllama(model="llama3.2", temperature=0)
-        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
-        self.banco = Chroma(
-            persist_directory=pasta_banco,
-            embedding_function=self.embeddings,
-        )
+    def __init__(self, buscador: Buscador) -> None:
+        self.buscador = buscador
+        self.llm = ChatOllama(model="qwen2.5", temperature=0)
 
     def criar_ferramentas(self) -> list:
-        retriever = self.banco.as_retriever(search_kwargs={"k": 3})
 
         @tool
         def buscar_documentos(query: str) -> str:
-            """Busca informações nos documentos locais. Use para responder perguntas sobre o conteúdo dos arquivos."""
-            docs = retriever.invoke(query)
+            """Busca informações nos documentos locais. Use SEMPRE que o usuário fizer qualquer pergunta. As informações retornadas são a fonte principal de conhecimento."""
+            docs = self.buscador.buscar(query, quantidade=5)
             return "\n\n".join([doc.page_content for doc in docs])
 
         return [buscar_documentos]
@@ -30,7 +25,16 @@ class Agente:
         agente = create_agent(
             self.llm,
             tools=ferramentas,
-            system_prompt="Você é um assistente útil. Sempre use a ferramenta buscar_documentos antes de responder qualquer pergunta.",
+            system_prompt=(
+                "Você é um assistente que responde perguntas com base em documentos fornecidos.\n\n"
+                "Regras:\n"
+                "- Sempre use a ferramenta buscar_documentos antes de responder qualquer pergunta\n"
+                "- Responda APENAS o que foi perguntado, de forma concisa\n"
+                "- NÃO reformate nem despeje o documento inteiro na resposta\n"
+                "- Sintetize com suas próprias palavras\n"
+                "- Se a pergunta for simples, a resposta deve ser curta e direta\n"
+                "- Não use linguagem técnica se não for necessário, responda de forma simples e acessível\n"
+            ),
         )
 
         while True:
@@ -42,8 +46,5 @@ class Agente:
                 "messages": [{"role": "user", "content": pergunta}]
             })
 
-            for msg in resultado["messages"]:
-                print(f"[{msg.type}]: {msg.content[:200]}")
-
-            # resposta = resultado["messages"][-1].content
-            # print(f"\nAgente: {resposta}")
+            resposta = resultado["messages"][-1].content
+            print(f"\nAgente: {resposta}")

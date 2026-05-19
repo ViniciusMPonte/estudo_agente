@@ -23,7 +23,7 @@ class Indexador:
     def dividir_chunks(self, documentos: list) -> list:
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
-            chunk_overlap=50,
+            chunk_overlap=100,
         )
         return splitter.split_documents(documentos)
 

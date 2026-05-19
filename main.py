@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from agente import Agente
+from buscador import Buscador
 from indexador import Indexador
 
 PASTA_DOCUMENTOS = "documentos/"
@@ -14,7 +15,8 @@ def main() -> None:
         indexador.indexar()
         print("Indexação concluída!")
 
-    agente = Agente(PASTA_BANCO)
+    buscador = Buscador(pasta_banco=PASTA_BANCO)
+    agente = Agente(buscador=buscador)
     agente.executar()
 
 
