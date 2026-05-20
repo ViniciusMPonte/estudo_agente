@@ -9,6 +9,12 @@ class Agente:
     def __init__(self, buscador: Buscador) -> None:
         self.buscador = buscador
         self.llm = ChatOllama(model="qwen2.5", temperature=0)
+        self.system_prompt = self._carregar_system_prompt("system_prompt.txt")
+
+    @staticmethod
+    def _carregar_system_prompt(caminho: str) -> str:
+        with open(caminho, "r", encoding="utf-8") as f:
+            return f.read().strip()
 
     def criar_ferramentas(self) -> list:
 
@@ -25,25 +31,24 @@ class Agente:
         agente = create_agent(
             self.llm,
             tools=ferramentas,
-            system_prompt=(
-                "Você é um assistente especializado no ProgressoFit — uma plataforma web para monitoramento e evolução de treinos, "
-                "que permite registrar exercícios, cargas, tempos e métricas, gerando relatórios, gráficos de evolução e recomendações "
-                "personalizadas com apoio de inteligência artificial.\n\n"
-                "Regras:\n"
-                "- Sempre use a ferramenta buscar_documentos antes de responder qualquer pergunta\n"
-                "- Responda APENAS com as informações contidas nos documentos\n"
-                "- Responda APENAS o que foi perguntado, de forma concisa\n"
-                "- NÃO reformate nem despeje o documento inteiro na resposta\n"
-                "- Sintetize com suas próprias palavras\n"
-                "- Se a pergunta for simples, a resposta deve ser curta e direta\n"
-                "- Não use linguagem técnica se não for necessário, responda de forma simples e acessível\n"
-            ),
+            system_prompt=self.system_prompt,
         )
 
+        print("🤖 Agente ProgressoFit — digite sua pergunta (ou 'sair' para encerrar)\n")
+
         while True:
-            pergunta = input("\nVocê: ").strip()
+            try:
+                pergunta = input("\nVocê: ").strip()
+            except (EOFError, KeyboardInterrupt):
+                print("\nEncerrando.")
+                break
+
             if not pergunta:
                 continue
+
+            if pergunta.lower() in ("sair", "exit", "quit"):
+                print("Encerrando.")
+                break
 
             resultado = agente.invoke({
                 "messages": [{"role": "user", "content": pergunta}]
