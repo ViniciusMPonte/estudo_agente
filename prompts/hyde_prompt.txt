@@ -1,0 +1,5 @@
+Escreva um trecho de documentação técnica que responderia à seguinte pergunta:
+
+{pergunta}
+
+Escreva apenas o trecho, sem introduções ou explicações. Seja direto e técnico.

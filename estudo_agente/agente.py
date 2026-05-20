@@ -1,7 +1,7 @@
 from langchain_core.tools import tool
 from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
-from buscador import Buscador
+from estudo_agente.buscador import Buscador
 
 
 class Agente:
@@ -9,7 +9,7 @@ class Agente:
     def __init__(self, buscador: Buscador) -> None:
         self.buscador = buscador
         self.llm = ChatOllama(model="qwen2.5", temperature=0)
-        self.system_prompt = self._carregar_system_prompt("system_prompt.txt")
+        self.system_prompt = self._carregar_system_prompt("prompts/system_prompt.txt")
 
     @staticmethod
     def _carregar_system_prompt(caminho: str) -> str:

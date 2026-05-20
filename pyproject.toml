@@ -12,3 +12,9 @@ dependencies = [
     "langchain-experimental>=0.4.1",
     "langchain-ollama>=1.1.0",
 ]
+
+[tool.uv]
+package = true
+
+[tool.setuptools.packages.find]
+include = ["estudo_agente*"]

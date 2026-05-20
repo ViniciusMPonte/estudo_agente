@@ -1,8 +1,11 @@
-from buscador import Buscador
+from estudo_agente.buscador import Buscador
 
 
 def main():
-    buscador = Buscador("chroma_db/")
+    buscador = Buscador(
+        pasta_banco="chroma_db/",
+        prompt_hyde=Buscador.carregar_prompt("prompts/hyde_prompt.txt"),
+    )
 
     print("🔍 Buscador de chunks — digite sua pergunta (ou 'sair' para encerrar)\n")
 

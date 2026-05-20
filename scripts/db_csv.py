@@ -1,7 +1,7 @@
 import chromadb
 import csv
 
-client = chromadb.PersistentClient(path="./chroma_db")
+client = chromadb.PersistentClient(path="chroma_db")
 colecao = client.list_collections()[0]
 dados = colecao.get(include=["documents", "metadatas"])
 
