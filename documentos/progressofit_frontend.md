@@ -1,278 +1,172 @@
 # ProgressoFit - Frontend
-### Controle seu treino. Veja seu progresso. Treine com inteligência.
 
-_**Projeto acadêmico em desenvolvimento*_
+O ProgressoFit é uma plataforma web acadêmica para monitoramento de treinos. O frontend permite visualizar progresso através de gráficos e relatórios, conquistar recompensas por gamificação e receber frases motivacionais personalizadas geradas por inteligência artificial.
 
-Este é o frontend da aplicação ProgressoFit, uma plataforma web desenvolvida para oferecer ferramentas simples e poderosas para monitoramento de treinos. A interface permite que os usuários visualizem seu progresso através de gráficos e relatórios, sejam insentivadas com a gameficação de conquistas, e recebam frases motivacionais personalizadas baseadas em inteligência artificial.
-
-**Desenvolvedores**
-- Vinícius Menezes Pontes
-- Matheus Aquino de Andrade
-- Juan Pablo Lima Rassi
-- Isabela Saores dos Santos
-- William Santos de Santana
-- Arthur Moura Silva
----
-
-## 🏗️ Arquitetura
-
-O projeto segue o padrão **MVC (Model-View-Controller)**:
-
-- **Models (DTOs)**: Estruturas de dados e validações
-- **Views**: Renderização de componentes e páginas
-- **Controllers**: Lógica de negócio e manipulação de eventos
-- **Services**: Comunicação com APIs e manipulação de dados
-- **Router**: Gerenciamento de rotas e navegação
-
-## 🔄 Integração com Backend
-
-A aplicação frontend se comunica com o backend através da classe `ApiService`, que gerencia:
-- Autenticação via JWT
-- Requisições HTTP padronizadas
-- Tratamento de erros
-- Headers de autenticação automáticos
-
-## 🎯 Funcionalidades
-
-### ✅ Implementadas
-- **Sistema de Autenticação**: Login e cadastro de usuários
-- **Controle de Autorização**: Gerenciamento de acesso com tokens JWT
-- **Componentes Reutilizáveis**: Arquitetura baseada em componentes
-- **Bootstrap customizado**: Uso de Sass/SCSS
+O projeto está em desenvolvimento e foi criado pelos desenvolvedores Vinícius Menezes Pontes, Matheus Aquino de Andrade, Juan Pablo Lima Rassi, Isabela Saores dos Santos, William Santos de Santana e Arthur Moura Silva.
 
 ---
 
-## 📋 Pré-requisitos
+## Arquitetura do Frontend
 
-Antes de executar o projeto, certifique-se de ter instalado:
+O frontend do ProgressoFit segue o padrão MVC (Model-View-Controller), organizado nas seguintes camadas:
 
-- 🟢 **Node.js** (versão 16 ou superior)
-- 📦 **NPM**
-- 🔧 **Git**
+A camada **Models (DTOs)** é responsável pelas estruturas de dados e validações. A camada **Views** cuida da renderização de componentes e páginas. A camada **Controllers** concentra a lógica de negócio e a manipulação de eventos. A camada **Services** gerencia a comunicação com APIs e a manipulação de dados. O **Router** é responsável pelo gerenciamento de rotas e navegação.
 
-### Verificando as versões instaladas:
+---
+
+## Integração do Frontend com o Backend
+
+A comunicação entre o frontend e o backend é feita através da classe `ApiService`. Essa classe gerencia autenticação via JWT, requisições HTTP padronizadas, tratamento de erros e inserção automática de headers de autenticação.
+
+---
+
+## Funcionalidades do Frontend
+
+As funcionalidades já implementadas no frontend são: sistema de autenticação com login e cadastro de usuários, controle de autorização com tokens JWT, arquitetura baseada em componentes reutilizáveis e customização de Bootstrap com Sass/SCSS.
+
+---
+
+## Pré-requisitos para executar o Frontend
+
+Para executar o frontend do ProgressoFit, é necessário ter instalado o Node.js na versão 16 ou superior, o NPM e o Git.
+
+Para verificar as versões instaladas, use os comandos abaixo:
 
 ```bash
-# Verificar versão do Node.js
 node --version
-
-# Verificar versão do NPM
 npm --version
-
-# Verificar versão do Git
 git --version
 ```
 
 ---
 
-## 🛠️ Como executar o projeto
+## Como executar o Frontend
 
-### 1. Clone o repositório
+**Passo 1 — Clone o repositório:**
 ```bash
 gh repo clone ViniciusMPonte/ProgressoFit-Frontend
 cd ProgressoFit-Frontend
 ```
 
-### 2. Instale as dependências
+**Passo 2 — Instale as dependências:**
 ```bash
 npm install
 ```
 
-### 3. Configure a URL da API
-Certifique-se de que o backend esteja rodando em `http://localhost:8090` ou ajuste a `baseURL` no arquivo `src/service/ApiService.js`:
+**Passo 3 — Configure a URL da API:**
+
+Certifique-se de que o backend esteja rodando em `http://localhost:8090`. Se necessário, ajuste a `baseURL` no arquivo `src/service/ApiService.js`:
 
 ```javascript
-this.baseURL = 'http://localhost:8090'; // Ajuste se necessário
+this.baseURL = 'http://localhost:8090';
 ```
 
-### 4. Inicie o servidor de desenvolvimento
+**Passo 4 — Inicie o servidor de desenvolvimento:**
 ```bash
 npm start
 ```
 
-Este comando iniciará o Live Server automaticamente e abrirá a aplicação no navegador.
+O comando acima inicia o Live Server automaticamente e abre a aplicação no navegador.
 
-### 5. Acesse a aplicação
-A aplicação estará disponível em: `http://localhost:8080`
+**Passo 5 — Acesse a aplicação:**
 
-----------
+A aplicação estará disponível em `http://localhost:8080`.
 
-## 📋 Customização do Bootstrap - Pré-requisitos
+---
 
-Antes de customizar o Bootstrap, instale as ferramentas necessárias:
+## Customização do Bootstrap
 
-```bash
-# Instalar Sass globalmente
-npm install -g sass
+O frontend usa Bootstrap com customização via Sass/SCSS. O arquivo principal de customização é `bootstrap.scss`, localizado em `src/styles/bootstrap/`.
 
-# Instalar PostCSS e Autoprefixer
-npm install -g postcss-cli autoprefixer
-```
+A estrutura de arquivos do Bootstrap no projeto é:
 
-### Verificando as instalações:
-```bash
-# Verificar Sass
-sass --version
-
-# Verificar PostCSS
-postcss --version
-
-# Verificar Autoprefixer
-autoprefixer --info
-```
-
-## 🚀 Setup e Configuração
-
-### 1. Estrutura do projeto Bootstrap
 ```
 ./src/styles/bootstrap/
-├── bootstrap.scss          # Arquivo principal de customização
-├── bootstrap.css           # CSS compilado
+├── bootstrap.scss
+├── bootstrap.css
 ├── bootstrap.css.map
 ├── package.json
 ├── package-lock.json
-└── cheatsheet/           # Documentação visual dos componentes
+└── cheatsheet/
     ├── index.html
     ├── cheatsheet.css
     ├── cheatsheet.rtl.css
     └── cheatsheet.js
 ```
 
-### 2. Navegue até o diretório do Bootstrap
+---
+
+## Pré-requisitos para customizar o Bootstrap
+
+Para customizar o Bootstrap, instale as ferramentas abaixo:
+
+```bash
+npm install -g sass
+npm install -g postcss-cli autoprefixer
+```
+
+Para verificar as instalações:
+
+```bash
+sass --version
+postcss --version
+autoprefixer --info
+```
+
+---
+
+## Como customizar o Bootstrap
+
+**Passo 1 — Navegue até o diretório do Bootstrap:**
 ```bash
 cd src/styles/bootstrap/
 ```
 
-### 3. Instale as dependências locais
+**Passo 2 — Instale as dependências locais:**
 ```bash
 npm install
 ```
 
-## ✏️ Como Customizar o Bootstrap
+**Passo 3 — Edite as variáveis no arquivo `bootstrap.scss`:**
 
-### 1. Editando variáveis SCSS
-Abra o arquivo `bootstrap.scss` e personalize as variáveis. Exemplo:
+As principais categorias de variáveis disponíveis para personalização são cores, tipografia, espaçamentos e breakpoints. Exemplo de estrutura:
 
 ```scss
-// === CORES PERSONALIZADAS ===
 $primary: #your-brand-color;
-$secondary: #your-secondary-color;
-$success: #28a745;
-$info: #17a2b8;
-$warning: #ffc107;
-$danger: #dc3545;
-
-// === TIPOGRAFIA ===
 $font-family-base: 'Your-Font', sans-serif;
-$font-size-base: 1rem;
-$line-height-base: 1.6;
-
-// === ESPAÇAMENTOS ===
 $spacer: 1rem;
 $border-radius: 0.5rem;
 
-// === BREAKPOINTS ===
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
-
-// Importar Bootstrap
 @import "~bootstrap/scss/bootstrap";
 ```
 
-### 2. Compilando o SCSS
-Após fazer suas alterações, compile o arquivo:
-
+**Passo 4 — Compile o SCSS:**
 ```bash
-# Comando básico de compilação
 sass bootstrap.scss bootstrap.css
-
-# Use --watch para compilar automaticamente a cada alteração
-sass --watch bootstrap.scss:bootstrap.css
 ```
 
-## 📚 Bootstrap Cheatsheet
-
-### Acessando a documentação visual
-O projeto inclui uma **cheatsheet completa** dos componentes Bootstrap:
-
-```
-URL: /src/styles/bootstrap/cheatsheet/
-Arquivo: src/styles/bootstrap/cheatsheet/index.html
-```
-
-### Como usar a cheatsheet:
-
-1. **Abra no navegador**:
-   ```
-   http://localhost:8080/src/styles/bootstrap/cheatsheet/
-   ```
-
-2. **O que você encontrará**:
-    - 📋 Todos os componentes Bootstrap disponíveis
-    - 🎨 Exemplos visuais de cada componente
-    - 📝 Código HTML para copiar e colar
-    - 🎯 Variações de cada componente
-    - 📱 Responsividade e breakpoints
-    - 🔧 Classes utilitárias
-
-3. **Navegação**:
-    - **Componentes**: Buttons, Cards, Modals, Navbars, etc.
-    - **Layout**: Grid system, Flexbox utilities
-    - **Utilities**: Spacing, Colors, Typography
-    - **Forms**: Input groups, Validation, Controls
-
-### Benefícios da cheatsheet:
-- ✅ **Referência rápida** durante o desenvolvimento
-- ✅ **Teste visual** das customizações aplicadas
-- ✅ **Documentação atualizada** com suas personalizações
-- ✅ **Exemplos práticos** de implementação
-- ✅ **Verificação de responsividade**
-
-## 🎯 Workflow de Customização
-
-### 1. Desenvolvimento
+Para recompilar automaticamente a cada alteração:
 ```bash
-#inicie o projeto
-npm start
-
-# Entre no diretório em outro terminal
-cd src/styles/bootstrap/
-
-# Modo watch para desenvolvimento
 sass --watch bootstrap.scss:bootstrap.css
-
-# Comece as alterações no bootstrap.scss
 ```
 
-### 2. Teste suas mudanças
-- Acesse a cheatsheet: `http://localhost:8080/src/styles/bootstrap/cheatsheet/`
-- Verifique os componentes modificados
-- Teste a responsividade
+---
 
-## 📝 Boas Práticas
+## Bootstrap Cheatsheet
 
-### Organização do código SCSS
-```scss
-// 1. Variáveis personalizadas primeiro
-$primary: #your-color;
+O projeto inclui uma cheatsheet visual com todos os componentes Bootstrap disponíveis. Ela pode ser acessada em `http://localhost:8080/src/styles/bootstrap/cheatsheet/` após iniciar o servidor.
 
-// 2. Import do Bootstrap
-@import "~bootstrap/scss/bootstrap";
-```
+A cheatsheet contém exemplos visuais de cada componente, código HTML para copiar, variações de componentes, informações sobre responsividade e breakpoints, classes utilitárias e documentação de formulários.
 
-## 🔧 Comandos Úteis
+---
+
+## Comandos úteis do Sass e PostCSS
 
 ```bash
 # Compilação básica
 sass bootstrap.scss bootstrap.css
 
-# Watch mode (recompila automaticamente)
+# Watch mode
 sass --watch bootstrap.scss:bootstrap.css
 
 # Compilação minificada
