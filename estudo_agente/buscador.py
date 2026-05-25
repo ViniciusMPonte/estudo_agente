@@ -1,11 +1,24 @@
+import os
+
+from dotenv import load_dotenv
 from langchain_chroma import Chroma
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import OllamaEmbeddings
+
+load_dotenv()
+API_KEY: str = os.getenv('API_KEY')
+
+llm_model: ChatGoogleGenerativeAI = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash-lite",
+    google_api_key=API_KEY
+)
+
 
 class Buscador:
 
     def __init__(self, pasta_banco: str, prompt_hyde: str) -> None:
         self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
-        self.llm = ChatOllama(model="qwen2.5", temperature=0)
+        self.llm = llm_model
         self.prompt_hyde = prompt_hyde
         self.banco = Chroma(
             persist_directory=pasta_banco,

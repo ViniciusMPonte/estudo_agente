@@ -1,14 +1,30 @@
-from langchain_core.tools import tool
-from langchain_ollama import ChatOllama
+import os
+import sys
+
+from dotenv import load_dotenv
 from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 from estudo_agente.buscador import Buscador
+
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
+
+load_dotenv()
+API_KEY: str = os.getenv('API_KEY')
+
+llm_model: ChatGoogleGenerativeAI = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash-lite",
+    google_api_key=API_KEY
+)
 
 
 class Agente:
 
     def __init__(self, buscador: Buscador) -> None:
         self.buscador = buscador
-        self.llm = ChatOllama(model="qwen2.5", temperature=0)
+        self.llm = llm_model
         self.system_prompt = self._carregar_system_prompt("prompts/system_prompt.txt")
 
     @staticmethod
